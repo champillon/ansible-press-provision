@@ -1,0 +1,25 @@
+---
+    # compute-video-demo-ansible
+    - name: Create Compute Engine instances
+      hosts: all
+      gather_facts: no
+    
+      tasks:
+        - name: Ensure jdk package installed
+          yum:
+            name: '{{ packages }}'
+            state: present
+            update_cache: false
+          vars:
+            packages:
+              - java-17-openjdk
+        - name: Change JDK from 11 -> 17
+          alternatives:
+            name: java
+            path: /usr/lib/jvm/jre-17/bin/java
+            link: /usr/bin/java
+            priority: 20000
+        - command: java -version
+          register: java_version
+        - debug:
+          msg: "Installed java X version: '{{ java_version.stderr }}'"

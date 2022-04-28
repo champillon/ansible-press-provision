@@ -1,0 +1,19 @@
+---
+    # compute-video-demo-ansible
+    - name: Create Compute Engine instances
+      hosts: all
+      gather_facts: no
+    
+      tasks:
+        - name: Ensure jdk package installed
+          yum:
+            name: '{{ packages }}'
+            state: present
+            update_cache: false
+          vars:
+            packages:
+              - java-11-openjdk
+        - command: java -version
+          register: java_version
+        - debug:
+          msg: "Installed java X version: '{{ java_version.stderr }}'"
