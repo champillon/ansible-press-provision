@@ -12,5 +12,5 @@
         - name: Check java version
           command: java -version
           register: java_version
-          debug:
+        - debug:
             msg: "Installed java X version: '{{ java_version.stderr }}'"
