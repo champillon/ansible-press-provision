@@ -12,7 +12,8 @@
           vars:
             packages:
               - java-11-openjdk
-        - command: java -version
+        - name: Check java version
+          command: java -version
           register: java_version
           debug:
             msg: "Installed java X version: '{{ java_version.stderr }}'"
