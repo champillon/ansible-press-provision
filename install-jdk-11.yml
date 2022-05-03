@@ -14,5 +14,5 @@
               - java-11-openjdk
         - command: java -version
           register: java_version
-        - debug:
-          msg: "Installed java X version: '{{ java_version.stderr }}'"
+          debug:
+            msg: "Installed java X version: '{{ java_version.stderr }}'"
