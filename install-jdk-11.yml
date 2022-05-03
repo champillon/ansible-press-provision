@@ -6,12 +6,9 @@
       tasks:
         - name: Ensure jdk package installed
           yum:
-            name: '{{ packages }}'
+            name: java-11-openjdk
             state: present
             update_cache: false
-          vars:
-            packages:
-              - java-11-openjdk
         - name: Check java version
           command: java -version
           register: java_version
